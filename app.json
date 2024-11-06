@@ -10,7 +10,10 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "assetBundlePatterns":[
+        "assets/fonts/*"
+      ]
     },
     "ios": {
       "supportsTablet": true
@@ -35,13 +38,7 @@
     },
     "assetBundlePatterns": [
       "assets/fonts/*"
-    ],
-    "packageOpts": {
-      "fonts": [
-        {
-          "JuliusSansOne": "./assets/fonts/JuliusSansOne-Regular.ttf"
-        }
-      ]
-    }
+    ]
+   
   }
 }

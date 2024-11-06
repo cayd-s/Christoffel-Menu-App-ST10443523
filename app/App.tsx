@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from "@react-navigation/native";
-import HomePage from "./index"
+import HomePage from "./index";
 import AddMenuPage from "./AddMenuPage";
 import FilterPage from "./FilterPage";
+import * as Font from 'expo-font';
+import AppLoading from 'expo-app-loading';
+
 
 interface MenuItem {
     name: string,
@@ -27,22 +30,31 @@ export default function App() {
         setMenuItems(newMenu);
     };
 
+    const [fontsLoaded] = Font.useFonts({
+        'JuliusSansOne': require('.')
+    });
+
+    if (!fontsLoaded){
+        return <AppLoading />;
+    }
+
     return (
-        
+        <NavigationContainer>
             <Tab.Navigator>
-                <Tab.Screen name="index">
+                <Tab.Screen name="Home">
                     {() => <HomePage menuItems={menuItems}
         onRemoveMenuItem={removeMenuItems}/>}
                 </Tab.Screen>
 
-                <Tab.Screen name ="FilterPage">
+                <Tab.Screen name ="Filter">
                     {() => <FilterPage menuItems={menuItems} />}
                 </Tab.Screen>
 
-                <Tab.Screen name="AddMenuPage">
+                <Tab.Screen name="Edit Menu">
                     {() => <AddMenuPage onAddMenuItem={addMenuItem}/>}
                 </Tab.Screen>    
             </Tab.Navigator>
-        
+        </NavigationContainer>
     );
 }
+
